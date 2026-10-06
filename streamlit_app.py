@@ -82,3 +82,9 @@ overall_profit = df["Profit"].sum()
 overall_profit_margin = (overall_profit / overall_sales) * 100
 
 margin_difference = profit_margin - overall_profit_margin
+
+col3.metric(
+    "Overall Profit Margin",
+    f"{profit_margin:.2f}%",
+    delta=f"{margin_difference:.2f}%"
+)
