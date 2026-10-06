@@ -42,3 +42,10 @@ selected_category = st.selectbox(
     "Select a Category",
     df["Category"].unique()
 )
+# 2. Filter the Sub_Categories based on the selected Category
+category_df = df[df["Category"] == selected_category]
+
+selected_subcategories = st.multiselect(
+    "Select Sub-Category",
+    category_df["Sub_Category"].unique()
+)
