@@ -63,24 +63,27 @@ sales_by_month_selected = (
 
 st.line_chart(sales_by_month_selected, y="Sales")
 # 4. Calculate metrics for the selected Sub-Categories
-total_sales = filtered_df["Sales"].sum()
-total_profit = filtered_df["Profit"].sum()
-profit_margin = (total_profit / total_sales) * 100
+if selected_subcategories:
+    total_sales = filtered_df["Sales"].sum()
+    total_profit = filtered_df["Profit"].sum()
+    profit_margin = (total_profit / total_sales) * 100
 
-col1, col2, col3 = st.columns(3)
+    col1, col2, col3 = st.columns(3)
 
-col1.metric("Total Sales", f"${total_sales:,.2f}")
-col2.metric("Total Profit", f"${total_profit:,.2f}")
+    col1.metric("Total Sales", f"${total_sales:,.2f}")
+    col2.metric("Total Profit", f"${total_profit:,.2f}")
 
-# 5. Compare selected profit margin to the overall profit margin
-overall_sales = df["Sales"].sum()
-overall_profit = df["Profit"].sum()
-overall_profit_margin = (overall_profit / overall_sales) * 100
+    # 5. Compare selected profit margin to the overall profit margin
+    overall_sales = df["Sales"].sum()
+    overall_profit = df["Profit"].sum()
+    overall_profit_margin = (overall_profit / overall_sales) * 100
 
-margin_difference = profit_margin - overall_profit_margin
+    margin_difference = profit_margin - overall_profit_margin
 
-col3.metric(
-    "Overall Profit Margin",
-    f"{profit_margin:.2f}%",
-    delta=f"{margin_difference:.2f}%"
-)
+    col3.metric(
+        "Overall Profit Margin",
+        f"{profit_margin:.2f}%",
+        delta=f"{margin_difference:.2f}%"
+    )
+else:
+    st.info("Select at least one Sub-Category to view the metrics.")
