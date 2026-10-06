@@ -71,11 +71,7 @@ col1, col2, col3 = st.columns(3)
 
 col1.metric("Total Sales", f"${total_sales:,.2f}")
 col2.metric("Total Profit", f"${total_profit:,.2f}")
-col3.metric(
-    "Overall Profit Margin",
-    f"{profit_margin:.2f}%",
-    delta=f"{margin_difference:.2f}%"
-)
+
 # 5. Compare selected profit margin to the overall profit margin
 overall_sales = df["Sales"].sum()
 overall_profit = df["Profit"].sum()
