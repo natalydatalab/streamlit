@@ -62,3 +62,13 @@ sales_by_month_selected = (
 )
 
 st.line_chart(sales_by_month_selected, y="Sales")
+# 4. Calculate metrics for the selected Sub-Categories
+total_sales = filtered_df["Sales"].sum()
+total_profit = filtered_df["Profit"].sum()
+profit_margin = (total_profit / total_sales) * 100
+
+col1, col2, col3 = st.columns(3)
+
+col1.metric("Total Sales", f"${total_sales:,.2f}")
+col2.metric("Total Profit", f"${total_profit:,.2f}")
+col3.metric("Overall Profit Margin", f"{profit_margin:.2f}%")
